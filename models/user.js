@@ -44,18 +44,6 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
-      role: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: "Role is required",
-          },
-          notEmpty: {
-            msg: "Role is required",
-          },
-        },
-      },
       username: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -65,6 +53,30 @@ module.exports = (sequelize, DataTypes) => {
           },
           notEmpty: {
             msg: "Username is required",
+          },
+        },
+      },
+      phoneNumber: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "PhoneNumber is required",
+          },
+          notEmpty: {
+            msg: "PhoneNumber is required",
+          },
+        },
+      },
+      address: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Address is required",
+          },
+          notEmpty: {
+            msg: "Address is required",
           },
         },
       },

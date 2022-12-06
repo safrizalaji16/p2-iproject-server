@@ -18,11 +18,15 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      role: {
+      username: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      username: {
+      phoneNumber: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      address: {
         type: Sequelize.STRING,
         allowNull: false,
       },
