@@ -37,6 +37,19 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
+      paymentStatus: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Payment Status is required",
+          },
+          notEmpty: {
+            msg: "Payment Status is required",
+          },
+        },
+        defaultValue: "unpaid",
+      },
     },
     {
       sequelize,

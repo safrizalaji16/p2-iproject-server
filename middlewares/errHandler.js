@@ -11,29 +11,28 @@ module.exports = {
         msg = err.errors.map((el) => el.message)[0];
         break;
 
+      case "Error Delete":
+        status = 400;
+        msg = "Cannot delete paid order";
+        break;
+
       case "JsonWebTokenError":
       case "Unauthorized":
         status = 401;
         msg = "Please Login First";
         break;
 
-      case "Accommodation Not Found":
+      case "Product Not Found":
         status = 404;
-        msg = "Accommodation Not Found";
+        msg = "Product Not Found";
         break;
 
-      case "Bookmark Bad Request":
-        status = 400;
-        msg = "You Already Add This Accommodation!";
-        break;
-
-      case "Customer Not Found":
+      case "Order Not Found":
         status = 404;
-        msg = "Customer Not Found";
+        msg = "Order Not Found";
         break;
 
       case "Error email or password":
-      case "Error google login":
         status = 401;
         msg = "Error invalid email or password";
         break;

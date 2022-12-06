@@ -25,6 +25,11 @@ module.exports = {
           key: "id",
         },
       },
+      paymentStatus: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: "unpaid",
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
