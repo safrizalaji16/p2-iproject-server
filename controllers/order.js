@@ -83,6 +83,31 @@ class Controller {
       next(err);
     }
   }
+  static async xendit() {
+    const x = new require("xendit-node")({
+      secretKey:
+        "xnd_development_P4qDfOss0OCpl8RtKrROHjaQYNCk9dN5lSfk+R1l9Wbe+rSiCwZ3jw==",
+    });
+
+    const { EWallet } = x;
+    const ewalletSpecificOptions = {};
+    const ew = new EWallet(ewalletSpecificOptions);
+
+    const resp = await ew.createEWalletCharge({
+      referenceID: "test-reference-id",
+      currency: "IDR",
+      amount: 1000,
+      checkoutMethod: "ONE_TIME_PAYMENT",
+      channelCode: "ID_SHOPEEPAY",
+      channelProperties: {
+        successRedirectURL: "https://dashboard.xendit.co/register/1",
+      },
+      metadata: {
+        branch_code: "tree_branch",
+      },
+    });
+    console.log(resp);
+  }
 }
 
 module.exports = Controller;

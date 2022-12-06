@@ -37,6 +37,18 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
+      quantity: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Quantity is required",
+          },
+          notEmpty: {
+            msg: "Quantity is required",
+          },
+        },
+      },
       paymentStatus: {
         type: DataTypes.STRING,
         allowNull: false,

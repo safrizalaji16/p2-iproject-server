@@ -26,6 +26,25 @@ class Controller {
       next(err);
     }
   }
+  static async readDetailProduct(req, res, next) {
+    try {
+      const { id } = req.params;
+
+      const product = await Product.findByPk(id);
+
+      if (!product) {
+        throw {
+          name: "Product Not Found",
+        };
+      }
+
+      res.status(200).json({
+        data: product,
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 module.exports = Controller;
