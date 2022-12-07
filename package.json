@@ -4,7 +4,12 @@
   "description": "Individual Project - Server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --runInBand --forceExit --setTimeout=500 --verbose",
+    "start": "nodemon app.js",
+    "db:create": "sequelize db:drop && sequelize db:create",
+    "db:migrate": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all",
+    "db:deploy": "railway run sequelize --env=production db:migrate:undo:all && railway run sequelize --env=production db:migrate && railway run sequelize --env=production db:seed:all && railway up",
+    "db:test": "sequelize --env=test db:migrate:undo:all && sequelize --env=test db:migrate && sequelize --env=test db:seed:all"
   },
   "repository": {
     "type": "git",
