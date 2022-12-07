@@ -6,14 +6,15 @@ List of Available Endpoints:
 - `POST /login`
 - `POST /googleLogin`
 
-- `POST /products`
 - `GET /products`
-- `GET /products/:id`
-- `PATCH /products/:id`
-- `PUT /products/:id`
-- `DELETE /products/:id`
+- `GET /products/:productCode`
 
-- `GET /histories`
+- `GET /orders`
+- `GET /orders/city`
+- `GET /orders/cost`
+- `POST /orders/:id`
+- `PATCH /orders/:id`
+- `DELETE /orders/:id`
 
 ### POST /register
 
