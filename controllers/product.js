@@ -12,7 +12,7 @@ class Controller {
           country: "us",
           lang: "en",
           currentpage: "0",
-          pagesize: "30",
+          pagesize: "40",
           categories: "men_all",
           concepts: "H&M MAN",
         },

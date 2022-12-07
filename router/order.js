@@ -4,11 +4,11 @@ const { authorizationOwner } = require("../middlewares/authorization");
 const router = require("express").Router();
 
 router
-  .post("/", Controller.addOrder)
   .get("/", Controller.readAllOrders)
   .get("/city", Controller.rajaOngkirCity)
-  .post("/cost", Controller.readAllOrders)
+  .post("/cost", Controller.rajaOngkirCost)
   .use("/:id", authorizationOwner)
+  .post("/:id", Controller.addOrder)
   .patch("/:id", Controller.editPaymentStatus)
   .delete("/:id", Controller.deleteOrder);
 

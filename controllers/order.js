@@ -5,7 +5,7 @@ const axios = require("axios");
 class Controller {
   static async addOrder(req, res, next) {
     try {
-      const { ProductId } = req.params;
+      const ProductId = req.params.id;
       const { quantity } = req.body;
       const findProduct = await Product.findByPk(ProductId);
 
@@ -94,6 +94,29 @@ class Controller {
         url: "https://api.rajaongkir.com/starter/city",
         headers: {
           key: "e35716ef96df4a9d5d32667c332e40bd",
+        },
+      });
+
+      res.status(200).json(data.rajaongkir.results);
+    } catch (err) {
+      next(err);
+    }
+  }
+  static async rajaOngkirCost(req, res, next) {
+    try {
+      const { origin, destination, weight, courier } = req.body;
+
+      const { data } = await axios({
+        method: "POST",
+        url: "https://api.rajaongkir.com/starter/cost",
+        headers: {
+          key: "e35716ef96df4a9d5d32667c332e40bd",
+        },
+        data: {
+          origin,
+          destination,
+          weight,
+          courier,
         },
       });
 
