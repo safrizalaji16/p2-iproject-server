@@ -1,9 +1,12 @@
 const { Order, Product } = require("../models");
 
+const axios = require("axios");
+
 class Controller {
   static async addOrder(req, res, next) {
     try {
-      const { ProductId } = req.body;
+      const { ProductId } = req.params;
+      const { quantity } = req.body;
       const findProduct = await Product.findByPk(ProductId);
 
       if (!findProduct) {
@@ -15,6 +18,7 @@ class Controller {
       const newOrder = await Order.create({
         UserId: req.User.id,
         ProductId,
+        quantity,
         paymentStatus: "unpaid",
       });
 
@@ -83,30 +87,20 @@ class Controller {
       next(err);
     }
   }
-  static async xendit() {
-    const x = new require("xendit-node")({
-      secretKey:
-        "xnd_development_P4qDfOss0OCpl8RtKrROHjaQYNCk9dN5lSfk+R1l9Wbe+rSiCwZ3jw==",
-    });
+  static async rajaOngkirCity(req, res, next) {
+    try {
+      const { data } = await axios({
+        method: "GET",
+        url: "https://api.rajaongkir.com/starter/city",
+        headers: {
+          key: "e35716ef96df4a9d5d32667c332e40bd",
+        },
+      });
 
-    const { EWallet } = x;
-    const ewalletSpecificOptions = {};
-    const ew = new EWallet(ewalletSpecificOptions);
-
-    const resp = await ew.createEWalletCharge({
-      referenceID: "test-reference-id",
-      currency: "IDR",
-      amount: 1000,
-      checkoutMethod: "ONE_TIME_PAYMENT",
-      channelCode: "ID_SHOPEEPAY",
-      channelProperties: {
-        successRedirectURL: "https://dashboard.xendit.co/register/1",
-      },
-      metadata: {
-        branch_code: "tree_branch",
-      },
-    });
-    console.log(resp);
+      res.status(200).json(data.rajaongkir.results);
+    } catch (err) {
+      next(err);
+    }
   }
 }
 

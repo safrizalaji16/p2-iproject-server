@@ -1,46 +1,55 @@
+const axios = require("axios");
+
 const { Product } = require("../models");
 
 class Controller {
-  static async addProduct(req, res, next) {
-    try {
-      const { name, description, price, imageUrl } = req.body;
-      const newProduct = await Product.create({
-        name,
-        description,
-        price,
-        imageUrl,
-        status: "available",
-      });
-
-      res.status(201).json(newProduct);
-    } catch (err) {
-      next(err);
-    }
-  }
   static async readAllProducts(req, res, next) {
     try {
-      const products = await Product.findAll();
+      const { data } = await axios({
+        method: "GET",
+        url: "https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/list",
+        params: {
+          country: "us",
+          lang: "en",
+          currentpage: "0",
+          pagesize: "30",
+          categories: "men_all",
+          concepts: "H&M MAN",
+        },
+        headers: {
+          "X-RapidAPI-Key":
+            "2e41e92258mshf64252ade8a6ebfp1bff9ajsn9a879d0f9dc4",
+          "X-RapidAPI-Host": "apidojo-hm-hennes-mauritz-v1.p.rapidapi.com",
+        },
+      });
 
-      res.status(200).json(products);
+      res.status(200).json(data.results);
     } catch (err) {
       next(err);
     }
   }
   static async readDetailProduct(req, res, next) {
     try {
-      const { id } = req.params;
+      const { productCode } = req.params;
 
-      const product = await Product.findByPk(id);
+      const { data } = await axios({
+        method: "GET",
+        url: "https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/detail",
+        params: { lang: "en", country: "us", productcode: `${productCode}` },
+        headers: {
+          "X-RapidAPI-Key":
+            "2e41e92258mshf64252ade8a6ebfp1bff9ajsn9a879d0f9dc4",
+          "X-RapidAPI-Host": "apidojo-hm-hennes-mauritz-v1.p.rapidapi.com",
+        },
+      });
 
-      if (!product) {
+      if (!data) {
         throw {
           name: "Product Not Found",
         };
       }
 
-      res.status(200).json({
-        data: product,
-      });
+      res.status(200).json(data.product.articlesList[0]);
     } catch (err) {
       next(err);
     }

@@ -17,6 +17,7 @@ class Controller {
       res.status(201).json({
         id: newUser.id,
         email: newUser.email,
+        msg: "Register Success!",
       });
     } catch (err) {
       next(err);
@@ -42,7 +43,7 @@ class Controller {
 
       const access_token = createToken({ id: findUser.id });
 
-      res.status(200).json({ access_token });
+      res.status(200).json({ access_token, msg: "Login Success!" });
     } catch (err) {
       next(err);
     }
