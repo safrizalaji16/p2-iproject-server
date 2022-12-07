@@ -93,7 +93,7 @@ class Controller {
         method: "GET",
         url: "https://api.rajaongkir.com/starter/city",
         headers: {
-          key: "e35716ef96df4a9d5d32667c332e40bd",
+          key: process.env.RAJAONGKIR_KEY,
         },
       });
 
@@ -110,7 +110,7 @@ class Controller {
         method: "POST",
         url: "https://api.rajaongkir.com/starter/cost",
         headers: {
-          key: "e35716ef96df4a9d5d32667c332e40bd",
+          key: process.env.RAJAONGKIR_KEY,
         },
         data: {
           origin,
@@ -120,7 +120,7 @@ class Controller {
         },
       });
 
-      res.status(200).json(data.rajaongkir.results);
+      res.status(200).json(data);
     } catch (err) {
       next(err);
     }

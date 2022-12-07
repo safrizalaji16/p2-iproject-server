@@ -38,6 +38,7 @@ module.exports = {
         break;
 
       case "Error email or password":
+      case "Error google login":
         status = 401;
         msg = "Error invalid email or password";
         break;
