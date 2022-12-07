@@ -6,7 +6,7 @@ class Controller {
   static async addOrder(req, res, next) {
     try {
       const ProductId = req.params.id;
-      const { quantity } = req.body;
+      const { destination, price } = req.body;
       const findProduct = await Product.findByPk(ProductId);
 
       if (!findProduct) {
@@ -18,7 +18,11 @@ class Controller {
       const newOrder = await Order.create({
         UserId: req.User.id,
         ProductId,
-        quantity,
+        destination,
+        price,
+        origin: "Surakarta",
+        courier: "jnt",
+        weight: 1000,
         paymentStatus: "unpaid",
       });
 

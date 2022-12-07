@@ -30,7 +30,23 @@ module.exports = {
         allowNull: false,
         defaultValue: "unpaid",
       },
-      quantity: {
+      weight: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      origin: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      destination: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      courier: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      price: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },

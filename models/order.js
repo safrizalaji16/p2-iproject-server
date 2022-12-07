@@ -37,15 +37,15 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
-      quantity: {
+      weight: {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
           notNull: {
-            msg: "Quantity is required",
+            msg: "Weight is required",
           },
           notEmpty: {
-            msg: "Quantity is required",
+            msg: "Weight is required",
           },
         },
       },
@@ -61,6 +61,54 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
         defaultValue: "unpaid",
+      },
+      origin: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Origin is required",
+          },
+          notEmpty: {
+            msg: "Origin is required",
+          },
+        },
+      },
+      destination: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Destination is required",
+          },
+          notEmpty: {
+            msg: "Destination is required",
+          },
+        },
+      },
+      courier: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Courier is required",
+          },
+          notEmpty: {
+            msg: "Courier is required",
+          },
+        },
+      },
+      price: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Price is required",
+          },
+          notEmpty: {
+            msg: "Price is required",
+          },
+        },
       },
     },
     {
