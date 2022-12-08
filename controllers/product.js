@@ -1,7 +1,5 @@
 const axios = require("axios");
 
-const { Product } = require("../models");
-
 class Controller {
   static async readAllProducts(req, res, next) {
     try {

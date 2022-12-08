@@ -7,8 +7,8 @@ router
   .get("/", Controller.readAllOrders)
   .get("/city", Controller.rajaOngkirCity)
   .post("/cost", Controller.rajaOngkirCost)
-  .use("/:id", authorizationOwner)
   .post("/:id", Controller.addOrder)
+  .use("/:id", authorizationOwner)
   .patch("/:id", Controller.editPaymentStatus)
   .delete("/:id", Controller.deleteOrder);
 

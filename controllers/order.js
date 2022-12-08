@@ -7,17 +7,11 @@ class Controller {
     try {
       const ProductId = req.params.id;
       const { destination, price } = req.body;
-      const findProduct = await Product.findByPk(ProductId);
 
-      if (!findProduct) {
-        throw {
-          name: "Product Not Found",
-        };
-      }
-
+      console.log(destination, price, ProductId);
       const newOrder = await Order.create({
         UserId: req.User.id,
-        ProductId,
+        ProductId: +ProductId,
         destination,
         price,
         origin: "Surakarta",
@@ -108,7 +102,7 @@ class Controller {
   }
   static async rajaOngkirCost(req, res, next) {
     try {
-      const { origin, destination, weight, courier } = req.body;
+      const { destination } = req.body;
 
       const { data } = await axios({
         method: "POST",
@@ -117,14 +111,14 @@ class Controller {
           key: process.env.RAJAONGKIR_KEY,
         },
         data: {
-          origin,
+          origin: 445,
           destination,
-          weight,
-          courier,
+          weight: 1000,
+          courier: "jne",
         },
       });
 
-      res.status(200).json(data);
+      res.status(200).json(data.rajaongkir.results[0].costs);
     } catch (err) {
       next(err);
     }
